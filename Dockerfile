@@ -1,10 +1,11 @@
+# Dockerfile - Ollama + llama3.2 (CORREGIDO)
 FROM ollama/ollama:latest
 
+# Copia tus documentos
 COPY docs /docs
 
-RUN ollama pull llama3.2
-
-# Puerto Ollama
+# Expone el puerto
 EXPOSE 11434
 
-CMD ["ollama", "serve"]
+# Inicia Ollama Y descarga el modelo al arrancar
+CMD ["sh", "-c", "ollama serve & sleep 5 && ollama pull llama3.2 && wait"]
